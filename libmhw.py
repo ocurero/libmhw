@@ -1,11 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Copyright 2014 Oscar Curero
+ 
+This code is free software; you can redistribute it and/or modify it
+under the terms of the GPL 3 license (see the file
+COPYING.txt included with the distribution).
+"""
+
 import linuxdvb
 import fcntl
-import time
-import sys
 from binascii import hexlify
-import xmltv
-import unicodedata
 from datetime import datetime
 
 #convert string to hex

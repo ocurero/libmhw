@@ -124,10 +124,12 @@ class NoMHWStreamFoundError(Exception):
         return "No MHW stream found on the current channel"
 
 class Programme:
-    def __init__(self, title, channel, airtime, summary, category, subcategory):
+    def __init__(self, title, channel, airtime, length, summary, category, subcategory):
         self.title = title
         self.channel = channel
         self.airtime = airtime
+        self.length = length
+        self.summary = summary
         self.category = category
         self.subcategory = subcategory
 
@@ -135,7 +137,6 @@ class MHW:
     def __init__(self, device, mhw_version=2):
         self.device = open(device, 'r+')
         self.channels = []
-        self.programs = []
 
     def scan_stream(self):
         summary_list = {}
@@ -201,5 +202,5 @@ class MHW:
                 summary = u""
         
             programs.append(Programme(title["title"], title["channel"], datetime.fromtimestamp(title["airtime"]),\
-            summary, title["category"], title["subcategory"]))
-        return (self.channels, programs)
+            title["length"], summary, title["category"], title["subcategory"]))
+        self.programs = programs
